@@ -1,19 +1,40 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 function AnswerOption(props) {
 
   return (
     <li className="answerOption">
-      <button id="horizontal-list"
-        type="button"
+      <input
+        type="radio"
+        className="radioCustomButton"
+        name="radioGroup"
+        checked={props.answerType === props.answer}
         id={props.answerType}
         value={props.index}
-        className={(props.selectedAnswer === props.index) ? 'selected-btn' : '' }
+        disabled={props.answer}
         onClick={props.onAnswerSelected}
-      >{props.answerContent}</button>
+         />
+      <label className="radioCustomLabel" htmlFor={props.answerType}>
+        {props.answerContent}
+      </label>
     </li>
-  );
-
+);
 }
+
+
+
+
+AnswerOption.propTypes = {
+  answerType: PropTypes.string.isRequired,
+  answerContent: PropTypes.string.isRequired,
+  answer: PropTypes.string.isRequired,
+  onAnswerSelected: PropTypes.func.isRequired
+};
+
+
+
+
+
 
 export default AnswerOption;
